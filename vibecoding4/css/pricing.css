@@ -1,0 +1,197 @@
+.pricing-section { padding: var(--section-gap) 0; }
+
+.billing-toggle {
+  display: flex;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  color: var(--white-60);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggle-btn.active {
+  background: linear-gradient(135deg, var(--green-700), var(--emerald-500));
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(22,163,74,0.4);
+}
+
+.save-badge {
+  background: var(--gold-400);
+  color: #000;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 100px;
+}
+
+.currency-select select {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--glass-border);
+  color: var(--white);
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition-smooth);
+}
+.currency-select select:focus { border-color: var(--green-400); }
+.currency-select option { background: #0a1520; }
+
+.price-card {
+  background: rgba(5,20,15,0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(74,222,128,0.12);
+  border-radius: 24px;
+  padding: 40px 36px;
+  transition: var(--transition-spring);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.price-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(74,222,128,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.price-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(74,222,128,0.3);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(74,222,128,0.15);
+}
+.price-card:hover::before { opacity: 1; }
+
+.price-featured {
+  border-color: rgba(74,222,128,0.35);
+  background: rgba(5,30,15,0.7);
+  box-shadow: 0 0 50px rgba(74,222,128,0.15), var(--shadow-card);
+  transform: scale(1.03);
+}
+.price-featured:hover { transform: scale(1.03) translateY(-8px); }
+
+.price-popular {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #000;
+  background: linear-gradient(135deg, var(--green-400), var(--emerald-400));
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.price-tier {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.price-amount {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.price-currency {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white-60);
+  margin-top: 6px;
+}
+
+.price-number {
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #fff 0%, var(--green-300) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  transition: all 0.3s ease;
+}
+
+.price-period { font-size: 0.85rem; color: var(--white-60); }
+
+.price-desc {
+  font-size: 0.85rem;
+  color: var(--white-60);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.price-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 32px;
+}
+
+.price-features li {
+  font-size: 0.88rem;
+  color: var(--white-60);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-features li:first-letter { color: var(--green-400); }
+
+.price-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-spring);
+  border: none;
+  letter-spacing: -0.01em;
+}
+
+.price-btn-primary {
+  background: linear-gradient(135deg, var(--green-600), var(--emerald-500));
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(22,163,74,0.4);
+}
+.price-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(22,163,74,0.5); }
+
+.price-btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--white-30);
+}
+.price-btn-outline:hover { border-color: var(--green-400); color: var(--green-400); background: rgba(74,222,128,0.05); }
+
+@media (max-width: 768px) {
+  .price-featured { transform: none; }
+  .price-featured:hover { transform: translateY(-8px); }
+}

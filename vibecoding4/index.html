@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NatureOS AI – The Intelligent Operating System Powering Earth's Ecosystems" />
+  <meta name="keywords" content="NatureOS AI, forest intelligence, wildlife tracking, climate AI, environmental monitoring" />
+  <title>NatureOS AI – Nature Thinks. AI Acts.</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/metrics.css" />
+  <link rel="stylesheet" href="css/features.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/pricing.css" />
+  <link rel="stylesheet" href="css/globalmap.css" />
+  <link rel="stylesheet" href="css/workflow.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+<!-- Canvas Background -->
+<canvas id="bgCanvas"></canvas>
+
+<!-- Particle Layer -->
+<div id="particleLayer"></div>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar navbar-expand-lg fixed-top glass-nav" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="#">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M16 2C8.27 2 2 8.27 2 16s6.27 14 14 14 14-6.27 14-14S23.73 2 16 2z" fill="url(#logoGrad)"/>
+        <path d="M16 7 L16 25 M10 13 L16 7 L22 13" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M8 19 Q16 14 24 19" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <defs>
+          <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+            <stop offset="0%" stop-color="#166534"/>
+            <stop offset="100%" stop-color="#059669"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="brand-text">NatureOS <span class="brand-ai">AI</span></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="#features">Platform</a></li>
+        <li class="nav-item"><a class="nav-link" href="#features">Solutions</a></li>
+        <li class="nav-item"><a class="nav-link" href="#dashboard">Resources</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="#globalmap">Company</a></li>
+      </ul>
+      <div class="nav-actions d-flex align-items-center gap-3">
+        <button class="btn-ghost">Sign In</button>
+        <button class="btn-primary-cta">Start Free <span>→</span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero-section" id="hero">
+  <div class="hero-bg-layers">
+    <div class="hero-forest-bg"></div>
+    <div class="hero-fog-layer"></div>
+    <div class="hero-light-rays"></div>
+    <div class="hero-overlay"></div>
+  </div>
+  <!-- Birds -->
+  <div class="birds-container" id="birdsContainer"></div>
+  <!-- Leaves -->
+  <div class="leaves-container" id="leavesContainer"></div>
+
+  <div class="container-fluid px-4 h-100">
+    <div class="hero-inner row align-items-center h-100">
+
+      <!-- LEFT CONTENT -->
+      <div class="col-lg-5 hero-left">
+        <div class="ai-badge">
+          <span class="badge-dot"></span> AI FOR EARTH. INTELLIGENCE FOR LIFE.
+        </div>
+        <h1 class="hero-headline">
+          Nature Thinks.<br>
+          <span class="headline-ai">AI Acts.</span>
+        </h1>
+        <p class="hero-sub">
+          Monitor forests, wildlife, rivers, climate and biodiversity through one intelligent AI operating system.
+        </p>
+        <div class="hero-ctas">
+          <button class="cta-primary magnetic-btn" id="startFreeBtn">
+            Start Free <span>→</span>
+          </button>
+          <button class="cta-secondary" id="watchDemoBtn">
+            <span class="play-icon">▶</span> Watch Demo
+          </button>
+        </div>
+        <div class="trust-badges">
+          <p class="trust-label">Trusted by leading organizations worldwide</p>
+          <div class="trust-logos">
+            <div class="trust-logo">🌍 UN Environment</div>
+            <div class="trust-logo">🌿 Nature Lab</div>
+            <div class="trust-logo trust-logo-bold">NASA</div>
+            <div class="trust-logo trust-logo-green">GREENPEACE</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT GLOBE -->
+      <div class="col-lg-7 hero-right">
+        <div class="globe-container">
+          <canvas id="globeCanvas" width="600" height="600"></canvas>
+          <div class="globe-glow"></div>
+          <div class="globe-ring globe-ring-1"></div>
+          <div class="globe-ring globe-ring-2"></div>
+          <!-- Floating Cards -->
+          <div class="float-card card-forest-cover" data-float="1">
+            <div class="fc-label">FOREST COVER</div>
+            <div class="fc-value">+2.48%</div>
+            <div class="fc-sub">vs last month</div>
+            <canvas class="fc-chart" width="100" height="40"></canvas>
+          </div>
+          <div class="float-card card-predictions" data-float="2">
+            <div class="fc-label">AI PREDICTIONS</div>
+            <div class="fc-value counter" data-target="4900000000" data-suffix="B" data-divisor="1000000000">4.9B</div>
+            <div class="fc-sub">This Month</div>
+            <canvas class="fc-chart" width="100" height="40"></canvas>
+          </div>
+          <div class="float-card card-rivers" data-float="3">
+            <div class="fc-label">RIVERS PROTECTED</div>
+            <div class="fc-value counter" data-target="980">0</div>
+            <div class="fc-sub">Across 135 Countries</div>
+            <canvas class="fc-chart" width="100" height="35"></canvas>
+          </div>
+          <div class="float-card card-wildlife" data-float="4">
+            <div class="fc-label">WILDLIFE TRACKED</div>
+            <div class="fc-value counter" data-target="425000" data-suffix="K" data-divisor="1000">0</div>
+            <div class="fc-sub">Live Tracking</div>
+            <div class="wildlife-icons">🐘 🦁 🐋 🦅 +23</div>
+          </div>
+          <div class="float-card card-wildfire alert-card" data-float="5">
+            <div class="alert-dot"></div>
+            <div class="fc-label">LIVE ALERT</div>
+            <div class="fc-value-small">Wildfire detected in Amazonas, Brazil</div>
+            <div class="fc-sub">AI Confidence: 98.7%</div>
+          </div>
+          <div class="float-card card-carbon" data-float="6">
+            <div class="fc-label">CARBON STORAGE</div>
+            <div class="fc-value counter" data-target="2847" data-suffix="Gt">0</div>
+            <div class="fc-sub">CO₂ Equivalent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-icon">⬇</div>
+    <span>Scroll to explore</span>
+  </div>
+</section>
+
+<!-- ===================== METRICS ===================== -->
+<section class="metrics-section reveal-section" id="metrics">
+  <div class="container-fluid px-4">
+    <div class="metrics-grid">
+      <div class="metric-card" data-delay="0">
+        <div class="metric-icon">🌳</div>
+        <div class="metric-value counter" data-target="12.5" data-suffix="M" data-decimals="1">0</div>
+        <div class="metric-label">Trees Monitored</div>
+      </div>
+      <div class="metric-card" data-delay="100">
+        <div class="metric-icon">🐾</div>
+        <div class="metric-value counter" data-target="425" data-suffix="K">0</div>
+        <div class="metric-label">Wildlife Tracked</div>
+      </div>
+      <div class="metric-card" data-delay="200">
+        <div class="metric-icon">💧</div>
+        <div class="metric-value counter" data-target="980">0</div>
+        <div class="metric-label">Rivers Protected</div>
+      </div>
+      <div class="metric-card" data-delay="300">
+        <div class="metric-icon">🌍</div>
+        <div class="metric-value counter" data-target="135">0</div>
+        <div class="metric-label">Countries</div>
+      </div>
+      <div class="metric-card" data-delay="400">
+        <div class="metric-icon">🤖</div>
+        <div class="metric-value counter" data-target="4.9" data-suffix="B" data-decimals="1">0</div>
+        <div class="metric-label">AI Predictions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURES BENTO ===================== -->
+<section class="features-section reveal-section" id="features">
+  <div class="container px-4">
+    <div class="section-header text-center mb-5">
+      <div class="section-badge">PLATFORM CAPABILITIES</div>
+      <h2 class="section-title">One OS. Every Ecosystem.</h2>
+      <p class="section-sub">Ten intelligent modules working in harmony to protect and understand our planet.</p>
+    </div>
+    <div class="bento-grid" id="bentoGrid">
+      <div class="bento-card bento-large tilt-card reveal-card" data-category="forest">
+        <div class="bento-img" style="background-image:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80')"></div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-icon">🌲</div>
+          <h3>Forest Intelligence</h3>
+          <p>AI-powered forest monitoring and health analysis with satellite precision.</p>
+          <a class="bento-link">Learn more →</a>
+        </div>
+        <div class="bento-glow"></div>
+      </div>
+      <div class="bento-card tilt-card reveal-card" data-category="wildlife">
+        <div class="bento-img" style="background-image:url('https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=600&q=80')"></div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-icon">🐆</div>
+          <h3>Wildlife Tracking</h3>
+          <p>Real-time tracking of wildlife and habitat protection.</p>
+          <a class="bento-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="bento-card tilt-card reveal-card" data-category="river">
+        <div class="bento-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80')"></div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-icon">🌊</div>
+          <h3>River Health AI</h3>
+          <p>Monitor water quality, flow, and ecosystem health.</p>
+          <a class="bento-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="bento-card tilt-card reveal-card" data-category="wildfire">
+        <div class="bento-img" style="background-image:url('https://images.unsplash.com/photo-1552083375-1447ce886485?w=600&q=80')"></div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-icon">🔥</div>
+          <h3>Wildfire Prediction</h3>
+          <p>AI predicts wildfires before they happen with high accuracy.</p>
+          <a class="bento-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="bento-card tilt-card reveal-card" data-category="climate">
+        <div class="bento-img" style="background-image:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80')"></div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-icon">☁️</div>
+          <h3>Climate Analytics</h3>
+          <p>Advanced climate modeling and impact forecasting.</p>
+          <a class="bento-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="bento-card tilt-card reveal-card" data-category="carbon">
+        <div class="bento-img" style="background-image:url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?w=600&q=80')"></div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-icon">🌿</div>
+          <h3>Carbon Intelligence</h3>
+          <p>Track carbon storage, emissions, and offsets in real-time.</p>
+          <a class="bento-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="bento-card tilt-card reveal-card" data-category="satellite">
+        <div class="bento-img" style="background-image:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80')"></div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-icon">🛰️</div>
+          <h3>Satellite Monitoring</h3>
+          <p>24/7 multi-spectral satellite imagery analysis.</p>
+          <a class="bento-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="bento-card tilt-card reveal-card" data-category="drone">
+        <div class="bento-img" style="background-image:url('https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=600&q=80')"></div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-icon">🚁</div>
+          <h3>Drone Coordination</h3>
+          <p>Autonomous drone fleets for ground-level monitoring.</p>
+          <a class="bento-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="bento-card tilt-card reveal-card" data-category="twin">
+        <div class="bento-img" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80')"></div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-icon">🌐</div>
+          <h3>AI Digital Twin</h3>
+          <p>Complete digital replica of ecosystems for simulation.</p>
+          <a class="bento-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="bento-card tilt-card reveal-card" data-category="alert">
+        <div class="bento-img" style="background-image:url('https://images.unsplash.com/photo-1504253163759-c23fccaebb55?w=600&q=80')"></div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-icon">🚨</div>
+          <h3>Emergency Alerts</h3>
+          <p>Instant notifications for critical environmental events.</p>
+          <a class="bento-link">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DASHBOARD DEMO ===================== -->
+<section class="dashboard-section reveal-section" id="dashboard">
+  <div class="container px-4">
+    <div class="section-header text-center mb-5">
+      <div class="section-badge">LIVE DASHBOARD</div>
+      <h2 class="section-title">Mission Control for Earth</h2>
+      <p class="section-sub">Real-time AI analytics across every biome on the planet.</p>
+    </div>
+    <div class="macbook-mockup">
+      <div class="macbook-screen">
+        <div class="dashboard-ui">
+          <div class="dash-sidebar">
+            <div class="dash-logo">🌿 NatureOS</div>
+            <div class="dash-nav-item active" data-view="satellite">🛰️ Satellite</div>
+            <div class="dash-nav-item" data-view="forest">🌲 Forests</div>
+            <div class="dash-nav-item" data-view="wildlife">🐾 Wildlife</div>
+            <div class="dash-nav-item" data-view="rivers">💧 Rivers</div>
+            <div class="dash-nav-item" data-view="alerts">🔥 Alerts</div>
+            <div class="dash-nav-item" data-view="analytics">📊 Analytics</div>
+          </div>
+          <div class="dash-main">
+            <div class="dash-header">
+              <span class="dash-title">Global Ecosystem Monitor</span>
+              <span class="dash-live"><span class="live-dot"></span> LIVE</span>
+            </div>
+            <div class="dash-map-area">
+              <canvas id="dashMapCanvas" width="680" height="280"></canvas>
+              <div class="scan-line"></div>
+            </div>
+            <div class="dash-widgets">
+              <div class="dash-widget">
+                <div class="dw-label">Forest Health</div>
+                <canvas id="chartForest" width="160" height="60"></canvas>
+                <div class="dw-value text-green">+3.2%</div>
+              </div>
+              <div class="dash-widget">
+                <div class="dw-label">Wildlife Activity</div>
+                <canvas id="chartWildlife" width="160" height="60"></canvas>
+                <div class="dw-value text-blue">Active</div>
+              </div>
+              <div class="dash-widget">
+                <div class="dw-label">CO₂ Absorption</div>
+                <canvas id="chartCarbon" width="160" height="60"></canvas>
+                <div class="dw-value text-emerald">847 Gt</div>
+              </div>
+              <div class="dash-widget">
+                <div class="dw-label">Alert Level</div>
+                <canvas id="chartAlert" width="160" height="60"></canvas>
+                <div class="dw-value text-amber">Moderate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="macbook-base"></div>
+      <div class="macbook-foot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRICING ===================== -->
+<section class="pricing-section reveal-section" id="pricing">
+  <div class="container px-4">
+    <div class="section-header text-center mb-5">
+      <div class="section-badge">PRICING</div>
+      <h2 class="section-title">Simple, Transparent Pricing</h2>
+      <p class="section-sub">Choose the plan that fits your mission.</p>
+    </div>
+    <div class="pricing-controls d-flex justify-content-center align-items-center gap-4 mb-5">
+      <div class="billing-toggle">
+        <button class="toggle-btn active" id="monthlyBtn" onclick="setBilling('monthly')">Monthly</button>
+        <button class="toggle-btn" id="yearlyBtn" onclick="setBilling('yearly')">Yearly <span class="save-badge">Save 20%</span></button>
+      </div>
+      <div class="currency-select">
+        <select id="currencySelect" onchange="updatePricing()">
+          <option value="USD">$ USD</option>
+          <option value="INR">₹ INR</option>
+          <option value="EUR">€ EUR</option>
+        </select>
+      </div>
+    </div>
+    <div class="pricing-grid row g-4 justify-content-center">
+      <div class="col-lg-4 col-md-6">
+        <div class="price-card reveal-card">
+          <div class="price-tier">Explorer</div>
+          <div class="price-amount">
+            <span class="price-currency" id="cur0"></span>
+            <span class="price-number" id="price0"></span>
+            <span class="price-period">/mo</span>
+          </div>
+          <p class="price-desc">Perfect for researchers and students exploring environmental data.</p>
+          <ul class="price-features">
+            <li>✓ 5 Ecosystem Modules</li>
+            <li>✓ 10K AI Predictions/mo</li>
+            <li>✓ 3 Satellite Feeds</li>
+            <li>✓ Basic Dashboard</li>
+            <li>✓ Email Support</li>
+          </ul>
+          <button class="price-btn price-btn-outline">Get Started</button>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="price-card price-featured reveal-card">
+          <div class="price-popular">Most Popular</div>
+          <div class="price-tier">Guardian</div>
+          <div class="price-amount">
+            <span class="price-currency" id="cur1"></span>
+            <span class="price-number" id="price1"></span>
+            <span class="price-period">/mo</span>
+          </div>
+          <p class="price-desc">For NGOs and conservation teams protecting critical ecosystems.</p>
+          <ul class="price-features">
+            <li>✓ All 10 Ecosystem Modules</li>
+            <li>✓ 1M AI Predictions/mo</li>
+            <li>✓ Full Satellite Access</li>
+            <li>✓ Drone Coordination</li>
+            <li>✓ Real-time Alerts</li>
+            <li>✓ Priority Support</li>
+          </ul>
+          <button class="price-btn price-btn-primary">Start Free Trial</button>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="price-card reveal-card">
+          <div class="price-tier">Planet Enterprise</div>
+          <div class="price-amount">
+            <span class="price-currency" id="cur2"></span>
+            <span class="price-number" id="price2"></span>
+            <span class="price-period">/mo</span>
+          </div>
+          <p class="price-desc">For governments and global organizations managing Earth at scale.</p>
+          <ul class="price-features">
+            <li>✓ Unlimited Everything</li>
+            <li>✓ AI Digital Twin</li>
+            <li>✓ Custom Integrations</li>
+            <li>✓ Dedicated Infrastructure</li>
+            <li>✓ 24/7 White-glove Support</li>
+            <li>✓ SLA Guarantee</li>
+          </ul>
+          <button class="price-btn price-btn-outline">Contact Sales</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GLOBAL MAP ===================== -->
+<section class="globalmap-section reveal-section" id="globalmap">
+  <div class="container px-4">
+    <div class="section-header text-center mb-5">
+      <div class="section-badge">GLOBAL REACH</div>
+      <h2 class="section-title">Protecting Every Corner of Earth</h2>
+      <p class="section-sub">Live environmental intelligence across 135 countries.</p>
+    </div>
+    <div class="map-wrapper">
+      <canvas id="worldMapCanvas" width="1200" height="500"></canvas>
+      <div class="map-hotspots" id="mapHotspots"></div>
+    </div>
+    <div class="map-stats row g-3 mt-4">
+      <div class="col-6 col-md-3">
+        <div class="map-stat-card">
+          <div class="msc-icon">🌏</div>
+          <div class="msc-value">135</div>
+          <div class="msc-label">Countries Active</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="map-stat-card">
+          <div class="msc-icon">📡</div>
+          <div class="msc-value">2,847</div>
+          <div class="msc-label">Active Sensors</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="map-stat-card">
+          <div class="msc-icon">⚡</div>
+          <div class="msc-value">99.9%</div>
+          <div class="msc-label">Uptime SLA</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="map-stat-card">
+          <div class="msc-icon">🔄</div>
+          <div class="msc-value">Real-time</div>
+          <div class="msc-label">Data Refresh</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WORKFLOW ===================== -->
+<section class="workflow-section reveal-section" id="workflow">
+  <div class="container px-4">
+    <div class="section-header text-center mb-5">
+      <div class="section-badge">HOW IT WORKS</div>
+      <h2 class="section-title">From Signal to Protection</h2>
+      <p class="section-sub">Eight intelligent steps from data collection to ecosystem protection.</p>
+    </div>
+    <div class="workflow-container">
+      <svg class="workflow-svg" id="workflowSvg" viewBox="0 0 900 500" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="workflow-nodes" id="workflowNodes"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer-section" id="footer">
+  <div class="footer-glow"></div>
+  <div class="container px-4">
+    <div class="footer-top row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <path d="M16 2C8.27 2 2 8.27 2 16s6.27 14 14 14 14-6.27 14-14S23.73 2 16 2z" fill="url(#fg2)"/>
+            <path d="M16 7 L16 25 M10 13 L16 7 L22 13" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M8 19 Q16 14 24 19" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <defs>
+              <linearGradient id="fg2" x1="0" y1="0" x2="32" y2="32">
+                <stop offset="0%" stop-color="#166534"/>
+                <stop offset="100%" stop-color="#059669"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span>NatureOS <strong>AI</strong></span>
+        </div>
+        <p class="footer-desc">The Intelligent Operating System Powering Earth's Ecosystems. Building a smarter, greener planet with AI.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email" class="newsletter-input" />
+          <button class="newsletter-btn">Subscribe</button>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="footer-heading">Platform</h5>
+        <ul class="footer-links">
+          <li><a href="#">Forest Intelligence</a></li>
+          <li><a href="#">Wildlife Tracking</a></li>
+          <li><a href="#">River Health AI</a></li>
+          <li><a href="#">Climate Analytics</a></li>
+          <li><a href="#">Carbon Intelligence</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="footer-heading">Company</h5>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Partners</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="footer-heading">Resources</h5>
+        <ul class="footer-links">
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Reference</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Research</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="footer-heading">Connect</h5>
+        <div class="social-icons">
+          <a class="social-icon" href="#" aria-label="Twitter">𝕏</a>
+          <a class="social-icon" href="#" aria-label="LinkedIn">in</a>
+          <a class="social-icon" href="#" aria-label="GitHub">⌥</a>
+          <a class="social-icon" href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 NatureOS AI. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</footer>
+
+<!-- Video Modal -->
+<div class="video-modal" id="videoModal">
+  <div class="modal-backdrop" onclick="closeModal()"></div>
+  <div class="modal-content-box">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <div class="modal-video-placeholder">
+      <div class="modal-demo-header">
+        <div class="modal-demo-badge">
+          <span class="modal-live-dot"></span> LIVE DEMO
+        </div>
+        <p class="modal-demo-tagline">NatureOS AI — Platform Walkthrough</p>
+      </div>
+      <canvas id="modalDemoCanvas" style="width:100%;height:55%;display:block;"></canvas>
+      <div class="modal-demo-stats">
+        <div class="mds-item"><span class="mds-val" id="mdVal1">0</span><span class="mds-label">Trees Saved</span></div>
+        <div class="mds-item"><span class="mds-val" id="mdVal2">0</span><span class="mds-label">AI Alerts Fired</span></div>
+        <div class="mds-item"><span class="mds-val" id="mdVal3">0%</span><span class="mds-label">Forest Cover</span></div>
+        <div class="mds-item"><span class="mds-val" id="mdVal4">0</span><span class="mds-label">Wildlife Safe</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/canvas-bg.js"></script>
+<script src="js/globe.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/worldmap.js"></script>
+<script src="js/workflow.js"></script>
+<script src="js/pricing.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
